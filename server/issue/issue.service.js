@@ -6,8 +6,8 @@ class IssueService {
   }
 
   async get() {
-    const issues = this._issueRepository.get();
-    console.info(issues);
+    const issues = await this._issueRepository.get();
+    console.info('issues :', issues);
     return issues;
   }
 
@@ -16,8 +16,8 @@ class IssueService {
   }
 
   async findOne(id) {
-    const issue = this._issueRepository.findOne(id);
-    console.info('issue', issue);
+    const issue = await this._issueRepository.findOne(id);
+    console.info('issue :', issue);
     return issue;
   }
 
