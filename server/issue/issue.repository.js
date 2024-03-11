@@ -1,4 +1,5 @@
 const { Repository } = require('../libs/repository');
+const { errorCode } = require('../libs/error');
 
 class IssueRepository extends Repository {
   constructor(fileName) {
@@ -27,7 +28,7 @@ class IssueRepository extends Repository {
     const issues = await this.read();
     const issue = issues.find(a => a.id == id);
     if (!issue) {
-      return console.error()
+      throw new Error(errorCode.ISSUE_NOT_FOUND);
     }
 
     return issue;
@@ -37,7 +38,7 @@ class IssueRepository extends Repository {
     const issues = await this.read();
     const index = issues.findIndex(a => a.id == id);
     if (index == -1) {
-      return console.error()
+      throw new Error(errorCode.ISSUE_NOT_FOUND);
     }
 
     const savedIssue = {
@@ -53,7 +54,7 @@ class IssueRepository extends Repository {
     const issues = await this.read();
     const index = issues.findIndex(a => a.id == id);
     if (index == -1) {
-      return console.error();
+      throw new Error(errorCode.ISSUE_NOT_FOUND);
     }
 
     await this.write(issues.toSpliced(index, 1));

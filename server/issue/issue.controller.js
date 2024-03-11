@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { handleError } = require('../libs/error');
 
 class IssueController {
   _issueService;
@@ -22,7 +23,7 @@ class IssueController {
       const issues = await this._issueService.get();
       return res.status(201).json(issues);
     } catch (err) {
-      console.log(err);
+      return handleError(res, err);
     }
   }
 
@@ -31,7 +32,7 @@ class IssueController {
       const issue = await this._issueService.create(req.body);
       return res.status(201).json(issue);
     } catch (err) {
-      console.log(err)
+      return handleError(res, err);
     }
   }
 
@@ -40,7 +41,7 @@ class IssueController {
       const issue = await this._issueService.findOne(req.params.id);
       return res.status(200).json(issue);
     } catch (err) {
-      console.log(err)
+      return handleError(res, err);
     }
   }
 
@@ -49,7 +50,7 @@ class IssueController {
       const issue = await this._issueService.update(req.params.id, req.body);
       return res.status(200).json(issue);
     } catch (err) {
-      console.log(err)
+      return handleError(res, err);
     }
   }
 
@@ -58,7 +59,7 @@ class IssueController {
       await this._issueService.delete(req.params.id);
       return res.status(200).json({ id: req.params.id });
     } catch (err) {
-      console.log(err)
+      return handleError(res, err);
     }
   }
 }
