@@ -6,7 +6,9 @@ class IssueService {
   }
 
   async get() {
-    return this._issueRepository.get();
+    const issues = this._issueRepository.get();
+    console.info(issues);
+    return issues;
   }
 
   async create(issue) {
@@ -14,7 +16,9 @@ class IssueService {
   }
 
   async findOne(id) {
-    return this._issueRepository.findOne(id);
+    const issue = this._issueRepository.findOne(id);
+    console.info('issue', issue);
+    return issue;
   }
 
   async update(id, issue) {
