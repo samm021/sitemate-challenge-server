@@ -16,3 +16,4 @@
 1. open terminal / command line
 2. `npm install`
 3. `npm run start`
+4. access through postman or cli app (https://github.com/samm021/sitemate-challenge-node-cli)
