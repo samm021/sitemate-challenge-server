@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const { IssueController } = require('./issue/issue.controller');
 const { IssueRepository } = require('./issue/issue.repository');
 const { IssueService } = require('./issue/issue.service');
+const { checkDb } = require('./libs/checkDb');
 
 require('dotenv').config()
 
@@ -35,6 +36,8 @@ async function createApp() {
     optionsSuccessStatus: 200,
   }));
   
+  // create json files if file not exist
+  await checkDb([ISSUE_FILENAME]);
   await setup(app);
 
   return app;
